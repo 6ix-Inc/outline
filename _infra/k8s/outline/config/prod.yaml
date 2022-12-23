@@ -21,16 +21,17 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+securityContext:
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
 
 service:
   type: ClusterIP
@@ -45,14 +46,13 @@ ingress:
     alb.ingress.kubernetes.io/group.name: posthog-deployment
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:419667429555:certificate/5c8f0051-e7aa-447e-9f3b-5c9cfb95a2bf
-    alb.ingress.kubernetes.io/ssl-policy: 'ELBSecurityPolicy-TLS-1-2-Ext-2018-06'
+    alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-TLS-1-2-Ext-2018-06"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
   hosts:
-    - host: out.6ix.com
+    - host: notes.6ix.com
       paths: [/]
   tls: []
-
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -65,8 +65,7 @@ resources:
   requests:
     cpu: 1
     memory: 1G
-    
-    
+
 configmap:
   enabled: false
   configs:
@@ -80,7 +79,6 @@ configmap:
     S3_AWS_BUCKET: ""
     # Redis Cluster
     GITHUB_TOKEN: ""
-
 
 autoscaling:
   enabled: true

@@ -57,7 +57,7 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker rmi $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-      # Deployment: we are using helm for deployment on kubernetes, Helm are custom build by DevOps 
+      # Deployment: we are using helm for deployment on kubernetes, Helm are custom build by DevOps  
       - name: 'Application Deployment Using Helm'
         id: helm-deployment
         env:

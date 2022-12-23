@@ -46,14 +46,13 @@ jobs:
           IMAGE_TAG: ${{ github.run_id }}
         run: |
           docker build -f Dockerfile --no-cache \
-           --build-arg BASE_URL=$BASE_URL \
-           --build-arg DATABASE_URL=$DATABASE_URL \
-           --build-arg SECRET_KEY=$SECRET_KEY \
-           --build-arg S3_AWS_KEY_ID=$S3_AWS_KEY_ID \
-           --build-arg S3_AWS_SECRET_ACCESS_KEY=$S3_AWS_SECRET_ACCESS_KEY \
-           --build-arg S3_AWS_BUCKET=$S3_AWS_BUCKET \
-           --build-arg GITHUB_TOKEN=$GITHUB_TOKEN \
-
+          --build-arg BASE_URL=$BASE_URL \
+          --build-arg DATABASE_URL=$DATABASE_URL \
+          --build-arg SECRET_KEY=$SECRET_KEY \
+          --build-arg S3_AWS_KEY_ID=$S3_AWS_KEY_ID \
+          --build-arg S3_AWS_SECRET_ACCESS_KEY=$S3_AWS_SECRET_ACCESS_KEY \
+          --build-arg S3_AWS_BUCKET=$S3_AWS_BUCKET \
+          --build-arg GITHUB_TOKEN=$GITHUB_TOKEN \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker rmi $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -69,7 +68,6 @@ jobs:
           S3_AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_AWS_SECRET_ACCESS_KEY }}
           S3_AWS_BUCKET: ${{ secrets.S3_AWS_BUCKET }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
           IMAGE_TAG: ${{ github.run_id }}
         run: |
           aws eks --region us-east-1 update-kubeconfig --name production-posthog-eks-cluster

@@ -37,6 +37,10 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY: ${{ secrets.DATABASE_SECRET_KEY }}
           BASE_URL: ${{ secrets.BASE_URL }}
+          S3_AWS_KEY_ID: ${{ secrets.S3_AWS_KEY_ID }}
+          S3_AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_AWS_SECRET_ACCESS_KEY }}
+          S3_AWS_BUCKET: ${{ secrets.S3_AWS_BUCKET }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: outline
           IMAGE_TAG: ${{ github.run_id }}

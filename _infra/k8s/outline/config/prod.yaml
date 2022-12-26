@@ -67,7 +67,7 @@ resources:
     memory: 1G
 
 configmap:
-  enabled: false
+  enabled: true
   configs:
     # PostgreSQL
     DATABASE_URL: ""

@@ -30,7 +30,7 @@ jobs:
       - name: "Login To Amazon ECR"
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-
+        
       # In this section, we are Preparing Docker images  and push AWS ECR 
       - name: "Prepare Docker Images and push to Amazon ECR"
         env:
@@ -57,6 +57,7 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker rmi $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
+
       # Deployment: we are using helm for deployment on kubernetes, Helm are custom build by DevOps 
       - name: 'Application Deployment Using Helm'
         id: helm-deployment
@@ -78,3 +79,4 @@ jobs:
            --set configmap.configs.AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --set configmap.configs.AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY --set configmap.configs.AWS_S3_UPLOAD_BUCKET_NAME=$AWS_S3_UPLOAD_BUCKET_NAME \
            --set configmap.configs.REDIS_URL=$REDIS_URL \
            --namespace=outline -f ./_infra/k8s/outline/config/prod.yaml outline ./_infra/k8s/outline --wait --history-max 4 --timeout 300s --debug
+

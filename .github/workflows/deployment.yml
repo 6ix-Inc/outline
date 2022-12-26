@@ -90,7 +90,7 @@ jobs:
           AWS_S3_ACL: ${{ secrets.AWS_S3_ACL }}
           REDIS_URL: ${{ secrets.REDIS_URL }}
           URL: ${{ secrets.URL }}
-          PORT: 3000
+          PORT: ${{ secrets.PORT }}
           IMAGE_TAG: ${{ github.run_id }} 
         run: |
           aws eks --region us-east-1 update-kubeconfig --name production-posthog-eks-cluster

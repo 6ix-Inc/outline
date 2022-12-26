@@ -87,7 +87,7 @@ configmap:
     # Redis Cluster
     REDIS_URL: ""
     URL: ""
-    PORT: 3000
+    PORT: "3000"
 
 autoscaling:
   enabled: true

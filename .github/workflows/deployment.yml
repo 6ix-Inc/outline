@@ -43,9 +43,9 @@ jobs:
       #     AWS_S3_ACCELERATE_URL: ${{ secrets.AWS_S3_ACCELERATE_URL }}
       #     AWS_S3_UPLOAD_BUCKET_URL: ${{ secrets.AWS_S3_UPLOAD_BUCKET_URL }}
       #     AWS_S3_UPLOAD_BUCKET_NAME: ${{ secrets.AWS_S3_UPLOAD_BUCKET_NAME }}
-      #     AWS_S3_UPLOAD_MAX_SIZE: 26214400
+      #     AWS_S3_UPLOAD_MAX_SIZE: "26214400"
       #     AWS_S3_FORCE_PATH_STYLE: true
-      #     AWS_S3_ACL: private
+      #     AWS_S3_ACL: "private"
       #     REDIS_URL: ${{ secrets.REDIS_URL }}
       #     URL: ${{ secrets.URL }}
       #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -85,12 +85,12 @@ jobs:
           AWS_S3_ACCELERATE_URL: ${{ secrets.AWS_S3_ACCELERATE_URL }}
           AWS_S3_UPLOAD_BUCKET_URL: ${{ secrets.AWS_S3_UPLOAD_BUCKET_URL }}
           AWS_S3_UPLOAD_BUCKET_NAME: ${{ secrets.AWS_S3_UPLOAD_BUCKET_NAME }}
-          AWS_S3_UPLOAD_MAX_SIZE: 26214400
+          AWS_S3_UPLOAD_MAX_SIZE: "26214400"
           AWS_S3_FORCE_PATH_STYLE: true
-          AWS_S3_ACL: private
+          AWS_S3_ACL: "private"
           REDIS_URL: ${{ secrets.REDIS_URL }}
           URL: ${{ secrets.URL }}
-          IMAGE_TAG: ${{ github.run_id }}
+          IMAGE_TAG: ${{ github.run_id }} 
         run: |
           aws eks --region us-east-1 update-kubeconfig --name production-posthog-eks-cluster
           export KUBECONFIG=~/.kube/config

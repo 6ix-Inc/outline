@@ -71,7 +71,7 @@ configmap:
   configs:
     # PostgreSQL
     DATABASE_URL: ""
-    # Hex code
+    # Hex code 
     SECRET_KEY: ""
     UTILS_SECRET: ""
     # S3 Bucket

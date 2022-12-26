@@ -18,7 +18,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      # https://github.com/aws-actions/configure-aws-credentials (Community)
+      # https://github.com/aws-actions/configure-aws-credentials (Community) 
       - name: "Configure AWS Credentials"
         uses: aws-actions/configure-aws-credentials@v1
         with:

@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: 419667429555.dkr.ecr.us-east-1.amazonaws.com/outline
   pullPolicy: Always
-  # Overrides the image tag whose default is the chart appVersion.
+  # Overrides the image tag whose default is the chart appVersion. 
   tag: "latest"
 
 imagePullSecrets: []

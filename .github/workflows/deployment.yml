@@ -39,13 +39,13 @@ jobs:
       #     UTILS_SECRET: ${{ secrets.UTILS_SECRET }}
       #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     AWS_REGION: us-east-1
+      #     AWS_REGION: 'us-east-1'
       #     AWS_S3_ACCELERATE_URL: ${{ secrets.AWS_S3_ACCELERATE_URL }}
       #     AWS_S3_UPLOAD_BUCKET_URL: ${{ secrets.AWS_S3_UPLOAD_BUCKET_URL }}
       #     AWS_S3_UPLOAD_BUCKET_NAME: ${{ secrets.AWS_S3_UPLOAD_BUCKET_NAME }}
-      #     AWS_S3_UPLOAD_MAX_SIZE: "26214400"
-      #     AWS_S3_FORCE_PATH_STYLE: "true"
-      #     AWS_S3_ACL: private
+      #     AWS_S3_UPLOAD_MAX_SIZE: '26214400'
+      #     AWS_S3_FORCE_PATH_STYLE: 'true'
+      #     AWS_S3_ACL: 'private'
       #     REDIS_URL: ${{ secrets.REDIS_URL }}
       #     URL: ${{ secrets.URL }}
       #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -81,13 +81,13 @@ jobs:
           UTILS_SECRET: ${{ secrets.UTILS_SECRET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: us-east-1
+          AWS_REGION: 'us-east-1'
           AWS_S3_ACCELERATE_URL: ${{ secrets.AWS_S3_ACCELERATE_URL }}
           AWS_S3_UPLOAD_BUCKET_URL: ${{ secrets.AWS_S3_UPLOAD_BUCKET_URL }}
           AWS_S3_UPLOAD_BUCKET_NAME: ${{ secrets.AWS_S3_UPLOAD_BUCKET_NAME }}
-          AWS_S3_UPLOAD_MAX_SIZE: "26214400"
-          AWS_S3_FORCE_PATH_STYLE: "true"
-          AWS_S3_ACL: private
+          AWS_S3_UPLOAD_MAX_SIZE: '26214400'
+          AWS_S3_FORCE_PATH_STYLE: 'true'
+          AWS_S3_ACL: 'private'
           REDIS_URL: ${{ secrets.REDIS_URL }}
           URL: ${{ secrets.URL }}
           PORT: "3000"

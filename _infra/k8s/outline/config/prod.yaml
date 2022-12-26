@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: 419667429555.dkr.ecr.us-east-1.amazonaws.com/outline
   pullPolicy: Always
-  # Overrides the image tag whose default is the chart appVersion.
+  # Overrides the image tag whose default is the chart appVersion. 
   tag: "latest"
 
 imagePullSecrets: []
@@ -72,13 +72,20 @@ configmap:
     # PostgreSQL
     DATABASE_URL: ""
     SECRET_KEY: ""
-    BASE_URL: ""
     # S3 Bucket
-    S3_AWS_KEY_ID: ""
-    S3_AWS_SECRET_ACCESS_KEY: ""
-    S3_AWS_BUCKET: ""
+    AWS_ACCESS_KEY_ID: ""
+    AWS_SECRET_ACCESS_KEY: ""
+    AWS_REGION: "us-east-1"
+    AWS_S3_ACCELERATE_URL: ""
+    AWS_S3_UPLOAD_BUCKET_URL: ""
+    AWS_S3_UPLOAD_BUCKET_NAME: ""
+    AWS_S3_UPLOAD_MAX_SIZE: 26214400
+    AWS_S3_FORCE_PATH_STYLE: true
+    AWS_S3_ACL: private
     # Redis Cluster
-    GITHUB_TOKEN: ""
+    REDIS_URL: ""
+    BASE_URL: ""
+    PORT: 3000
 
 autoscaling:
   enabled: true

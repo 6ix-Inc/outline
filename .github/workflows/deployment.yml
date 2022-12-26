@@ -18,7 +18,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      # https://github.com/aws-actions/configure-aws-credentials (Community)
+      # https://github.com/aws-actions/configure-aws-credentials (Community) 
       - name: "Configure AWS Credentials"
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -36,11 +36,11 @@ jobs:
       #   env:
       #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
       #     SECRET_KEY: ${{ secrets.DATABASE_SECRET_KEY }}
-      #     BASE_URL: ${{ secrets.BASE_URL }}
-      #     S3_AWS_KEY_ID: ${{ secrets.S3_AWS_KEY_ID }}
-      #     S3_AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_AWS_SECRET_ACCESS_KEY }}
-      #     S3_AWS_BUCKET: ${{ secrets.S3_AWS_BUCKET }}
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_S3_UPLOAD_BUCKET_URL: ${{ secrets.AWS_S3_UPLOAD_BUCKET_URL }}
+      #     AWS_S3_UPLOAD_BUCKET_NAME: ${{ secrets.AWS_S3_UPLOAD_BUCKET_NAME }}
+      #     REDIS_URL: ${{ secrets.REDIS_URL }}
       #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       #     ECR_REPOSITORY: outline
       #     IMAGE_TAG: ${{ github.run_id }}
@@ -49,10 +49,10 @@ jobs:
       #     --build-arg BASE_URL=$BASE_URL \
       #     --build-arg DATABASE_URL=$DATABASE_URL \
       #     --build-arg SECRET_KEY=$SECRET_KEY \
-      #     --build-arg S3_AWS_KEY_ID=$S3_AWS_KEY_ID \
-      #     --build-arg S3_AWS_SECRET_ACCESS_KEY=$S3_AWS_SECRET_ACCESS_KEY \
-      #     --build-arg S3_AWS_BUCKET=$S3_AWS_BUCKET \
-      #     --build-arg GITHUB_TOKEN=$GITHUB_TOKEN \
+      #     --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+      #     --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+      #     --build-arg AWS_S3_UPLOAD_BUCKET_NAME=$AWS_S3_UPLOAD_BUCKET_NAME \
+      #     --build-arg REDIS_URL=$REDIS_URL \
       #     -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
       #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       #     docker rmi $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -64,17 +64,17 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY: ${{ secrets.DATABASE_SECRET_KEY }}
           BASE_URL: ${{ secrets.BASE_URL }}
-          S3_AWS_KEY_ID: ${{ secrets.S3_AWS_KEY_ID }}
-          S3_AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_AWS_SECRET_ACCESS_KEY }}
-          S3_AWS_BUCKET: ${{ secrets.S3_AWS_BUCKET }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_UPLOAD_BUCKET_NAME: ${{ secrets.AWS_S3_UPLOAD_BUCKET_NAME }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
           IMAGE_TAG: ${{ github.run_id }}
         run: |
           aws eks --region us-east-1 update-kubeconfig --name production-posthog-eks-cluster
           export KUBECONFIG=~/.kube/config
           helm upgrade --install --atomic \
-           --set image.tag=3767597102 \
+           --set image.tag=$IMAGE_TAG \
            --set configmap.configs.DATABASE_URL=$DATABASE_URL --set configmap.configs.SECRET_KEY=$SECRET_KEY --set configmap.configs.BASE_URL=$BASE_URL  \
-           --set configmap.configs.S3_AWS_KEY_ID=$S3_AWS_KEY_ID --set configmap.configs.S3_AWS_SECRET_ACCESS_KEY=$S3_AWS_SECRET_ACCESS_KEY --set configmap.configs.S3_AWS_BUCKET=$S3_AWS_BUCKET \
-           --set configmap.configs.GITHUB_TOKEN=$GITHUB_TOKEN \
+           --set configmap.configs.AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --set configmap.configs.AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY --set configmap.configs.AWS_S3_UPLOAD_BUCKET_NAME=$AWS_S3_UPLOAD_BUCKET_NAME \
+           --set configmap.configs.REDIS_URL=$REDIS_URL \
            --namespace=outline -f ./_infra/k8s/outline/config/prod.yaml outline ./_infra/k8s/outline --wait --history-max 4 --timeout 1000s --debug

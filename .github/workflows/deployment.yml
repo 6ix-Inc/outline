@@ -35,7 +35,8 @@ jobs:
       - name: "Prepare Docker Images and push to Amazon ECR"
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          SECRET_KEY: ${{ secrets.DATABASE_SECRET_KEY }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          URL: ${{ secrets.URL }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_S3_UPLOAD_BUCKET_URL: ${{ secrets.AWS_S3_UPLOAD_BUCKET_URL }}
@@ -46,7 +47,7 @@ jobs:
           IMAGE_TAG: ${{ github.run_id }}
         run: |
           docker build -f Dockerfile --no-cache \
-          --build-arg BASE_URL=$BASE_URL \
+          --build-arg URL=$URL \
           --build-arg DATABASE_URL=$DATABASE_URL \
           --build-arg SECRET_KEY=$SECRET_KEY \
           --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
@@ -63,7 +64,7 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY: ${{ secrets.DATABASE_SECRET_KEY }}
-          BASE_URL: ${{ secrets.BASE_URL }}
+          URL: ${{ secrets.URL }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_S3_UPLOAD_BUCKET_NAME: ${{ secrets.AWS_S3_UPLOAD_BUCKET_NAME }}
@@ -73,8 +74,9 @@ jobs:
           aws eks --region us-east-1 update-kubeconfig --name production-posthog-eks-cluster
           export KUBECONFIG=~/.kube/config
           helm upgrade --install --atomic \
-           --set image.tag=$IMAGE_TAG \
-           --set configmap.configs.DATABASE_URL=$DATABASE_URL --set configmap.configs.SECRET_KEY=$SECRET_KEY --set configmap.configs.BASE_URL=$BASE_URL  \
+           --set image.tag=3781370375 \
+           --set configmap.configs.DATABASE_URL=$DATABASE_URL --set configmap.configs.SECRET_KEY=$SECRET_KEY --set configmap.configs.URL=$URL  \
            --set configmap.configs.AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --set configmap.configs.AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY --set configmap.configs.AWS_S3_UPLOAD_BUCKET_NAME=$AWS_S3_UPLOAD_BUCKET_NAME \
            --set configmap.configs.REDIS_URL=$REDIS_URL \
-           --namespace=outline -f ./_infra/k8s/outline/config/prod.yaml outline ./_infra/k8s/outline --wait --history-max 4 --timeout 300s --debug
+           --set configmap.configs.URL=$URL \
+           --namespace=outline -f ./_infra/k8s/outline/config/prod.yaml outline ./_infra/k8s/outline --wait --history-max 4 --timeout 420s --debug

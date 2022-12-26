@@ -71,7 +71,9 @@ configmap:
   configs:
     # PostgreSQL
     DATABASE_URL: ""
+    # Hex code
     SECRET_KEY: ""
+    UTILS_SECRET: ""
     # S3 Bucket
     AWS_ACCESS_KEY_ID: ""
     AWS_SECRET_ACCESS_KEY: ""
@@ -84,7 +86,7 @@ configmap:
     AWS_S3_ACL: private
     # Redis Cluster
     REDIS_URL: ""
-    BASE_URL: ""
+    URL: ""
     PORT: 3000
 
 autoscaling:

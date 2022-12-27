@@ -48,6 +48,7 @@ jobs:
       #     AWS_S3_ACL: ${{ secrets.AWS_S3_ACL }}
       #     REDIS_URL: ${{ secrets.REDIS_URL }}
       #     URL: ${{ secrets.URL }}
+      #     PORT: ${{ secrets.PORT }}
       #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       #     ECR_REPOSITORY: outline
       #     IMAGE_TAG: ${{ github.run_id }}
@@ -67,6 +68,7 @@ jobs:
       #     --build-arg AWS_S3_ACL=$AWS_S3_ACL \
       #     --build-arg REDIS_URL=$REDIS_URL \
       #     --build-arg URL=$URL \
+      #     --build-arg PORT=$PORT \
       #     -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
       #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       #     docker rmi $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG

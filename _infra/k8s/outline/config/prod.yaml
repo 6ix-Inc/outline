@@ -66,28 +66,24 @@ resources:
     cpu: 1
     memory: 1G
 
-configmap:
-  enabled: true
-  configs:
-    # PostgreSQL
-    DATABASE_URL: ""
-    # Hex code 
-    SECRET_KEY: ""
-    UTILS_SECRET: ""
-    # S3 Bucket
-    AWS_ACCESS_KEY_ID: ""
-    AWS_SECRET_ACCESS_KEY: ""
-    AWS_REGION: ""
-    AWS_S3_ACCELERATE_URL: ""
-    AWS_S3_UPLOAD_BUCKET_URL: ""
-    AWS_S3_UPLOAD_BUCKET_NAME: ""
-    AWS_S3_UPLOAD_MAX_SIZE: ""
-    # AWS_S3_FORCE_PATH_STYLE: ""
-    AWS_S3_ACL: ""
-    # Redis Cluster
-    REDIS_URL: ""
-    URL: ""
-    PORT: ""
+# configmap:
+#   enabled: true
+#   configs:
+#     DATABASE_URL: ""
+#     SECRET_KEY: ""
+#     UTILS_SECRET: ""
+#     AWS_ACCESS_KEY_ID: ""
+#     AWS_SECRET_ACCESS_KEY: ""
+#     AWS_REGION: ""
+#     AWS_S3_ACCELERATE_URL: ""
+#     AWS_S3_UPLOAD_BUCKET_URL: ""
+#     AWS_S3_UPLOAD_BUCKET_NAME: ""
+#     AWS_S3_UPLOAD_MAX_SIZE: ""
+#     AWS_S3_FORCE_PATH_STYLE: ""
+#     AWS_S3_ACL: ""
+#     REDIS_URL: ""
+#     URL: ""
+#     PORT: ""
 
 autoscaling:
   enabled: true

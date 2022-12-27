@@ -98,7 +98,7 @@ jobs:
           aws eks --region us-east-1 update-kubeconfig --name production-posthog-eks-cluster
           export KUBECONFIG=~/.kube/config
           helm upgrade --install --atomic \
-           --set image.tag=latest \
+           --set image.tag=$IMAGE_TAG \
            --set configmap.configs.DATABASE_URL=$DATABASE_URL --set configmap.configs.SECRET_KEY=$SECRET_KEY --set configmap.configs.UTILS_SECRET=$UTILS_SECRET \
            --set configmap.configs.AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --set configmap.configs.AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY --set configmap.configs.AWS_REGION=$AWS_REGION \
            --set configmap.configs.AWS_S3_UPLOAD_BUCKET_NAME=$AWS_S3_UPLOAD_BUCKET_NAME --set configmap.configs.AWS_S3_UPLOAD_BUCKET_URL=$AWS_S3_UPLOAD_BUCKET_URL --set configmap.configs.AWS_S3_ACCELERATE_URL=$AWS_S3_ACCELERATE_URL \

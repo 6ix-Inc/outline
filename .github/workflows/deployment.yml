@@ -31,47 +31,63 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      # # In this section, we are Preparing Docker images  and push AWS ECR 
-      # - name: "Prepare Docker Images and push to Amazon ECR"
-      #   env:
-      #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      #     SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      #     UTILS_SECRET: ${{ secrets.UTILS_SECRET }}
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     AWS_REGION: ${{ secrets.AWS_REGION }}
-      #     AWS_S3_ACCELERATE_URL: ${{ secrets.AWS_S3_ACCELERATE_URL }}
-      #     AWS_S3_UPLOAD_BUCKET_URL: ${{ secrets.AWS_S3_UPLOAD_BUCKET_URL }}
-      #     AWS_S3_UPLOAD_BUCKET_NAME: ${{ secrets.AWS_S3_UPLOAD_BUCKET_NAME }}
-      #     AWS_S3_UPLOAD_MAX_SIZE: ${{ secrets.AWS_S3_UPLOAD_MAX_SIZE }}
-      #     AWS_S3_FORCE_PATH_STYLE: ${{ secrets.AWS_S3_FORCE_PATH_STYLE }}
-      #     AWS_S3_ACL: ${{ secrets.AWS_S3_ACL }}
-      #     REDIS_URL: ${{ secrets.REDIS_URL }}
-      #     URL: ${{ secrets.URL }}
-      #     PORT: ${{ secrets.PORT }}
-      #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-      #     ECR_REPOSITORY: outline
-      #     IMAGE_TAG: ${{ github.run_id }}
-      #   run: |
-      #     docker build -f Dockerfile --no-cache \
-      #     --build-arg DATABASE_URL=$DATABASE_URL \
-      #     --build-arg SECRET_KEY=$SECRET_KEY \
-      #     --build-arg UTILS_SECRET=$UTILS_SECRET \
-      #     --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
-      #     --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
-      #     --build-arg AWS_REGION=$AWS_REGION \
-      #     --build-arg AWS_S3_ACCELERATE_URL=$AWS_S3_ACCELERATE_URL \
-      #     --build-arg AWS_S3_UPLOAD_BUCKET_URL=$AWS_S3_UPLOAD_BUCKET_URL \
-      #     --build-arg AWS_S3_UPLOAD_BUCKET_NAME=$AWS_S3_UPLOAD_BUCKET_NAME \
-      #     --build-arg AWS_S3_UPLOAD_MAX_SIZE=$AWS_S3_UPLOAD_MAX_SIZE \
-      #     --build-arg AWS_S3_FORCE_PATH_STYLE=$AWS_S3_FORCE_PATH_STYLE \
-      #     --build-arg AWS_S3_ACL=$AWS_S3_ACL \
-      #     --build-arg REDIS_URL=$REDIS_URL \
-      #     --build-arg URL=$URL \
-      #     --build-arg PORT=$PORT \
-      #     -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-      #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-      #     docker rmi $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+      # In this section, we are Preparing Docker images  and push AWS ECR 
+      - name: "Prepare Docker Images and push to Amazon ECR"
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          UTILS_SECRET: ${{ secrets.UTILS_SECRET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_S3_ACCELERATE_URL: ${{ secrets.AWS_S3_ACCELERATE_URL }}
+          AWS_S3_UPLOAD_BUCKET_URL: ${{ secrets.AWS_S3_UPLOAD_BUCKET_URL }}
+          AWS_S3_UPLOAD_BUCKET_NAME: ${{ secrets.AWS_S3_UPLOAD_BUCKET_NAME }}
+          AWS_S3_UPLOAD_MAX_SIZE: ${{ secrets.AWS_S3_UPLOAD_MAX_SIZE }}
+          AWS_S3_FORCE_PATH_STYLE: ${{ secrets.AWS_S3_FORCE_PATH_STYLE }}
+          AWS_S3_ACL: ${{ secrets.AWS_S3_ACL }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
+          URL: ${{ secrets.URL }}
+          PORT: ${{ secrets.PORT }}
+          OIDC_CLIENT_ID: ${{ secrets.OIDC_CLIENT_ID }}
+          OIDC_CLIENT_SECRET: ${{ secrets.OIDC_CLIENT_SECRET }}
+          OIDC_AUTH_URI: "https://notes.6ix.com/application/o/authorize/"
+          OIDC_TOKEN_URI: "https://notes.6ix.com/application/o/token/"
+          OIDC_USERINFO_URI: "https://notes.6ix.com/oauth2/userInfo"
+          OIDC_USERNAME_CLAIM: "preferred_username"
+          OIDC_DISPLAY_NAME: "OpenID"
+          OIDC_SCOPES: "openid_profile_email"
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: outline
+          IMAGE_TAG: ${{ github.run_id }}
+        run: |
+          docker build -f Dockerfile --no-cache \
+          --build-arg DATABASE_URL=$DATABASE_URL \
+          --build-arg SECRET_KEY=$SECRET_KEY \
+          --build-arg UTILS_SECRET=$UTILS_SECRET \
+          --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+          --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+          --build-arg AWS_REGION=$AWS_REGION \
+          --build-arg AWS_S3_ACCELERATE_URL=$AWS_S3_ACCELERATE_URL \
+          --build-arg AWS_S3_UPLOAD_BUCKET_URL=$AWS_S3_UPLOAD_BUCKET_URL \
+          --build-arg AWS_S3_UPLOAD_BUCKET_NAME=$AWS_S3_UPLOAD_BUCKET_NAME \
+          --build-arg AWS_S3_UPLOAD_MAX_SIZE=$AWS_S3_UPLOAD_MAX_SIZE \
+          --build-arg AWS_S3_FORCE_PATH_STYLE=$AWS_S3_FORCE_PATH_STYLE \
+          --build-arg AWS_S3_ACL=$AWS_S3_ACL \
+          --build-arg REDIS_URL=$REDIS_URL \
+          --build-arg URL=$URL \
+          --build-arg PORT=$PORT \
+          --build-arg OIDC_CLIENT_ID=$OIDC_CLIENT_ID \
+          --build-arg OIDC_CLIENT_SECRET=$OIDC_CLIENT_SECRET \
+          --build-arg OIDC_AUTH_URI=$OIDC_AUTH_URI \
+          --build-arg OIDC_TOKEN_URI=$OIDC_TOKEN_URI \
+          --build-arg OIDC_USERINFO_URI=$OIDC_USERINFO_URI \
+          --build-arg OIDC_USERNAME_CLAIM=$OIDC_USERNAME_CLAIM \
+          --build-arg OIDC_DISPLAY_NAME=$OIDC_DISPLAY_NAME \
+          --build-arg OIDC_SCOPES=$OIDC_SCOPES \
+          -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker rmi $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
 
       # Deployment: we are using helm for deployment on kubernetes, Helm are custom build by DevOps 
@@ -106,7 +122,7 @@ jobs:
           aws eks --region us-east-1 update-kubeconfig --name production-posthog-eks-cluster
           export KUBECONFIG=~/.kube/config
           helm upgrade --install --atomic \
-           --set image.tag=latest \
+           --set image.tag=$IMAGE_TAG \
            --set configmap.configs.DATABASE_URL=$DATABASE_URL --set configmap.configs.SECRET_KEY=$SECRET_KEY --set configmap.configs.UTILS_SECRET=$UTILS_SECRET \
            --set configmap.configs.AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --set configmap.configs.AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY --set configmap.configs.AWS_REGION=$AWS_REGION \
            --set configmap.configs.AWS_S3_UPLOAD_BUCKET_NAME=$AWS_S3_UPLOAD_BUCKET_NAME --set configmap.configs.AWS_S3_UPLOAD_BUCKET_URL=$AWS_S3_UPLOAD_BUCKET_URL --set configmap.configs.AWS_S3_ACCELERATE_URL=$AWS_S3_ACCELERATE_URL \

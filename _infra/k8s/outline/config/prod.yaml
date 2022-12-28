@@ -84,6 +84,12 @@ configmap:
     REDIS_URL: ""
     URL: ""
     PORT: ""
+    OIDC_CLIENT_ID: ""
+    OIDC_CLIENT_SECRET: ""
+    OIDC_USERNAME_CLAIM: "preferred_username"
+    OIDC_DISPLAY_NAME: "OpenID"
+    OIDC_SCOPES: "openid profile email"
+
 
 autoscaling:
   enabled: true

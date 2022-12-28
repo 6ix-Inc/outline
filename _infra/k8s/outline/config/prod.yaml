@@ -86,12 +86,12 @@ configmap:
     PORT: ""
     OIDC_CLIENT_ID: ""
     OIDC_CLIENT_SECRET: ""
-    OIDC_AUTH_URI: "https://notes.6ix.com/application/o/authorize/"
-    OIDC_TOKEN_URI: "https://notes.6ix.com/application/o/token/"
-    OIDC_USERINFO_URI: "https://notes.6ix.com/oauth2/userInfo"
+    OIDC_AUTH_URI: "https://notes.6ix.com//authorize"
+    OIDC_TOKEN_URI: "https://notes.6ix.com/oauth/token"
+    OIDC_USERINFO_URI: "https://notes.6ix.com/userInfo"
     OIDC_USERNAME_CLAIM: "preferred_username"
     OIDC_DISPLAY_NAME: "OpenID"
-    OIDC_SCOPES: "openid_profile_email" 
+    OIDC_SCOPES: "openid" 
 
 
 autoscaling:

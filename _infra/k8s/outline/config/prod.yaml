@@ -90,7 +90,6 @@ configmap:
     OIDC_DISPLAY_NAME: "OpenID"
     OIDC_SCOPES: "openid_profile_email"
 
-
 autoscaling:
   enabled: true
   minReplicas: 1

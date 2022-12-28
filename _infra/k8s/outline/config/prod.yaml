@@ -88,8 +88,7 @@ configmap:
     OIDC_CLIENT_SECRET: ""
     OIDC_USERNAME_CLAIM: "preferred_username"
     OIDC_DISPLAY_NAME: "OpenID"
-    OIDC_SCOPES: "openid profile email"
-
+    OIDC_SCOPES: "openid_profile_email"
 
 autoscaling:
   enabled: true

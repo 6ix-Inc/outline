@@ -87,7 +87,7 @@ configmap:
     OIDC_CLIENT_ID: ""
     OIDC_CLIENT_SECRET: ""
     OIDC_AUTH_URI: "https://notes.6ix.com//authorize"
-    OIDC_TOKEN_URI: "https://notes.6ix.com/oauth/token/"
+    OIDC_TOKEN_URI: "https://notes.6ix.com/oauth/token"
     OIDC_USERINFO_URI: "https://notes.6ix.com/userInfo"
     OIDC_USERNAME_CLAIM: "preferred_username"
     OIDC_DISPLAY_NAME: "OpenID"

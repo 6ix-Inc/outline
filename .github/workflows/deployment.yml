@@ -97,7 +97,7 @@ jobs:
           OIDC_CLIENT_SECRET: ${{ secrets.OIDC_CLIENT_SECRET }}
           OIDC_USERNAME_CLAIM: "preferred_username"
           OIDC_DISPLAY_NAME: "OpenID"
-          OIDC_SCOPES: "openid profile email"
+          OIDC_SCOPES: "openid_profile_email"
           IMAGE_TAG: ${{ github.run_id }} 
         run: |
           aws eks --region us-east-1 update-kubeconfig --name production-posthog-eks-cluster

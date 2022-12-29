@@ -67,9 +67,10 @@ resources:
     memory: 1G
 
 configmap:
-  enabled: false
+  enabled: true
   configs:
     DATABASE_URL: ""
+    NODE_ENV: "production"
     SECRET_KEY: ""
     UTILS_SECRET: ""
     AWS_ACCESS_KEY_ID: ""
@@ -82,16 +83,11 @@ configmap:
     AWS_S3_FORCE_PATH_STYLE: ""
     AWS_S3_ACL: ""
     REDIS_URL: ""
+    AZURE_CLIENT_ID: "75ff177f-33bb-4cac-b4b1-ffc278720d78"
+    AZURE_CLIENT_SECRET: "2X_8Q~EglIU-HlCms9PxAqKzE58dDQmRzRmOIcD2"
+    AZURE_RESOURCE_APP_ID: "00000003-0000-0000-c000-000000000000"
     URL: ""
     PORT: ""
-    OIDC_CLIENT_ID: ""
-    OIDC_CLIENT_SECRET: ""
-    OIDC_AUTH_URI: "https://notes.6ix.com//authorize"
-    OIDC_TOKEN_URI: "https://notes.6ix.com/oauth/token"
-    OIDC_USERINFO_URI: "https://notes.6ix.com/userInfo"
-    OIDC_USERNAME_CLAIM: "preferred_username"
-    OIDC_DISPLAY_NAME: "OpenID"
-    OIDC_SCOPES: "openid" 
 
 
 autoscaling:

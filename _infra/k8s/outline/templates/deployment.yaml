@@ -37,6 +37,47 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          env:
+            - name: DATABASE_URL
+              value:  {{ .Values.env_secret.DATABASE_URL }}
+            - name: NODE_ENV
+              value:  "production"
+            - name: SECRET_KEY
+              value:  {{ .Values.env_secret.UTILS_SECRET }}
+            - name: UTILS_SECRET
+              value:  {{ .Values.env_secret.UTILS_SECRET }}
+            - name: AWS_ACCESS_KEY_ID
+              value:  {{ .Values.env_secret.AWS_ACCESS_KEY_ID }}
+            - name: AWS_SECRET_ACCESS_KEY
+              value:  {{ .Values.env_secret.AWS_SECRET_ACCESS_KEY }}
+            - name: AWS_REGION
+              value:  "us-east-1"
+            - name: AWS_S3_ACCELERATE_URL
+              value:  {{ .Values.env_secret.AWS_S3_ACCELERATE_URL }}
+            - name: AWS_S3_UPLOAD_BUCKET_URL
+              value:  {{ .Values.env_secret.AWS_S3_UPLOAD_BUCKET_URL }}
+            - name: AWS_S3_UPLOAD_BUCKET_NAME
+              value:  {{ .Values.env_secret.AWS_S3_UPLOAD_BUCKET_NAME }}
+            - name: AWS_S3_UPLOAD_MAX_SIZE
+              value:  "26214400"
+            - name: AWS_S3_FORCE_PATH_STYLE
+              value: "true"
+            - name: AWS_S3_ACL
+              value:  "private"
+            - name: REDIS_URL
+              value:  {{ .Values.env_secret.REDIS_URL }}
+            # - name: AZURE_CLIENT_ID
+            #   value:  {{ .Values.env_secret.AZURE_CLIENT_ID }}
+            # - name: AZURE_CLIENT_SECRET
+            #   value:  {{ .Values.env_secret.AZURE_CLIENT_SECRET }}
+            # - name: AZURE_RESOURCE_APP_ID
+            #   value:  {{ .Values.env_secret.AZURE_RESOURCE_APP_ID }}
+            - name: URL
+              value:  "notes.6ix.com"
+            - name: PORT
+              value:  "3000"
+            - name: PGSSLMODE
+              value:  "disable"
           # livenessProbe:
           #   httpGet:
           #     path: /

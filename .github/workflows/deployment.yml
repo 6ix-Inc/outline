@@ -37,26 +37,20 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           UTILS_SECRET: ${{ secrets.UTILS_SECRET }}
+          NODE_ENV: "production"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_REGION: "us-east-1"
           AWS_S3_ACCELERATE_URL: ${{ secrets.AWS_S3_ACCELERATE_URL }}
           AWS_S3_UPLOAD_BUCKET_URL: ${{ secrets.AWS_S3_UPLOAD_BUCKET_URL }}
           AWS_S3_UPLOAD_BUCKET_NAME: ${{ secrets.AWS_S3_UPLOAD_BUCKET_NAME }}
-          AWS_S3_UPLOAD_MAX_SIZE: ${{ secrets.AWS_S3_UPLOAD_MAX_SIZE }}
-          AWS_S3_FORCE_PATH_STYLE: ${{ secrets.AWS_S3_FORCE_PATH_STYLE }}
-          AWS_S3_ACL: ${{ secrets.AWS_S3_ACL }}
+          AWS_S3_UPLOAD_MAX_SIZE: "26214400"
+          AWS_S3_FORCE_PATH_STYLE: "true"
+          AWS_S3_ACL: "private"
           REDIS_URL: ${{ secrets.REDIS_URL }}
-          URL: ${{ secrets.URL }}
-          PORT: ${{ secrets.PORT }}
-          OIDC_CLIENT_ID: ${{ secrets.OIDC_CLIENT_ID }}
-          OIDC_CLIENT_SECRET: ${{ secrets.OIDC_CLIENT_SECRET }}
-          OIDC_AUTH_URI: "https://notes.6ix.com/authorize"
-          OIDC_TOKEN_URI: "https://notes.6ix.com/oauth/token"
-          OIDC_USERINFO_URI: "https://notes.6ix.com/userInfo"
-          OIDC_USERNAME_CLAIM: "preferred_username"
-          OIDC_DISPLAY_NAME: "OpenID"
-          OIDC_SCOPES: "openid"
+          URL: "notes.6ix.com"
+          PORT: "3000"
+          PGSSLMODE: "disable"
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: outline
           IMAGE_TAG: ${{ github.run_id }}
@@ -64,6 +58,7 @@ jobs:
           docker build -f Dockerfile --no-cache \
           --build-arg DATABASE_URL=$DATABASE_URL \
           --build-arg SECRET_KEY=$SECRET_KEY \
+          --build-arg NODE_ENV=$NODE_ENV \
           --build-arg UTILS_SECRET=$UTILS_SECRET \
           --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
           --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
@@ -77,14 +72,7 @@ jobs:
           --build-arg REDIS_URL=$REDIS_URL \
           --build-arg URL=$URL \
           --build-arg PORT=$PORT \
-          --build-arg OIDC_CLIENT_ID=$OIDC_CLIENT_ID \
-          --build-arg OIDC_CLIENT_SECRET=$OIDC_CLIENT_SECRET \
-          --build-arg OIDC_AUTH_URI=$OIDC_AUTH_URI \
-          --build-arg OIDC_TOKEN_URI=$OIDC_TOKEN_URI \
-          --build-arg OIDC_USERINFO_URI=$OIDC_USERINFO_URI \
-          --build-arg OIDC_USERNAME_CLAIM=$OIDC_USERNAME_CLAIM \
-          --build-arg OIDC_DISPLAY_NAME=$OIDC_DISPLAY_NAME \
-          --build-arg OIDC_SCOPES=$OIDC_SCOPES \
+          --build-arg PGSSLMODE=$PGSSLMODE \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker rmi $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -99,40 +87,22 @@ jobs:
           UTILS_SECRET: ${{ secrets.UTILS_SECRET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
           AWS_S3_ACCELERATE_URL: ${{ secrets.AWS_S3_ACCELERATE_URL }}
           AWS_S3_UPLOAD_BUCKET_URL: ${{ secrets.AWS_S3_UPLOAD_BUCKET_URL }}
           AWS_S3_UPLOAD_BUCKET_NAME: ${{ secrets.AWS_S3_UPLOAD_BUCKET_NAME }}
-          AWS_S3_UPLOAD_MAX_SIZE: ${{ secrets.AWS_S3_UPLOAD_MAX_SIZE }}
-          AWS_S3_FORCE_PATH_STYLE: ${{ secrets.AWS_S3_FORCE_PATH_STYLE }}
-          AWS_S3_ACL: ${{ secrets.AWS_S3_ACL }}
           REDIS_URL: ${{ secrets.REDIS_URL }}
-          URL: ${{ secrets.URL }}
-          PORT: ${{ secrets.PORT }}
-          OIDC_CLIENT_ID: ${{ secrets.OIDC_CLIENT_ID }}
-          OIDC_CLIENT_SECRET: ${{ secrets.OIDC_CLIENT_SECRET }}
-          OIDC_AUTH_URI: "https://notes.6ix.com/authorize"
-          OIDC_TOKEN_URI: "https://notes.6ix.com/oauth/token"
-          OIDC_USERINFO_URI: "https://notes.6ix.com/userInfo"
-          OIDC_USERNAME_CLAIM: "preferred_username"
-          OIDC_DISPLAY_NAME: "OpenID"
-          OIDC_SCOPES: "openid"
           IMAGE_TAG: ${{ github.run_id }} 
+          
         run: |
           aws eks --region us-east-1 update-kubeconfig --name production-posthog-eks-cluster
           export KUBECONFIG=~/.kube/config
           helm upgrade --install --atomic \
            --set image.tag=$IMAGE_TAG \
-           --set configmap.configs.DATABASE_URL=$DATABASE_URL --set configmap.configs.SECRET_KEY=$SECRET_KEY --set configmap.configs.UTILS_SECRET=$UTILS_SECRET \
-           --set configmap.configs.AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --set configmap.configs.AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY --set configmap.configs.AWS_REGION=$AWS_REGION \
-           --set configmap.configs.AWS_S3_UPLOAD_BUCKET_NAME=$AWS_S3_UPLOAD_BUCKET_NAME --set configmap.configs.AWS_S3_UPLOAD_BUCKET_URL=$AWS_S3_UPLOAD_BUCKET_URL --set configmap.configs.AWS_S3_ACCELERATE_URL=$AWS_S3_ACCELERATE_URL \
-           --set configmap.configs.AWS_S3_UPLOAD_MAX_SIZE=$AWS_S3_UPLOAD_MAX_SIZE --set configmap.configs.AWS_S3_FORCE_PATH_STYLE=$AWS_S3_FORCE_PATH_STYLE --set configmap.configs.AWS_S3_ACL=$AWS_S3_ACL \
-           --set configmap.configs.REDIS_URL=$REDIS_URL \
-           --set configmap.configs.URL=$URL \
-           --set configmap.configs.PORT=$PORT \
-           --set configmap.configs.OIDC_CLIENT_ID=$OIDC_CLIENT_ID --set configmap.configs.OIDC_CLIENT_SECRET=$OIDC_CLIENT_SECRET --set configmap.configs.OIDC_USERNAME_CLAIM=$OIDC_USERNAME_CLAIM --set configmap.configs.OIDC_DISPLAY_NAME=$OIDC_DISPLAY_NAME --set configmap.configs.OIDC_SCOPES=$OIDC_SCOPES \
-           --set configmap.configs.OIDC_AUTH_URI=$OIDC_AUTH_URI \
-           --set configmap.configs.OIDC_TOKEN_URI=$OIDC_TOKEN_URI \
-           --set configmap.configs.OIDC_USERINFO_URI=$OIDC_USERINFO_URI \
+           --set env_secret.DATABASE_URL=$DATABASE_URL \
+           --set env_secret.SECRET_KEY=$SECRET_KEY \
+           --set env_secret.UTILS_SECRET=$UTILS_SECRET \
+           --set env_secret.AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --set env_secret.AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+           --set env_secret.AWS_S3_UPLOAD_BUCKET_NAME=$AWS_S3_UPLOAD_BUCKET_NAME --set env_secret.AWS_S3_UPLOAD_BUCKET_URL=$AWS_S3_UPLOAD_BUCKET_URL --set env_secret.AWS_S3_ACCELERATE_URL=$AWS_S3_ACCELERATE_URL \
+           --set env_secret.REDIS_URL=$REDIS_URL \
            --namespace=outline -f ./_infra/k8s/outline/config/prod.yaml outline ./_infra/k8s/outline --wait --history-max 4 --timeout 1000s --debug 
 

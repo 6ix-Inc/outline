@@ -48,6 +48,8 @@ jobs:
           REDIS_URL: ${{ secrets.REDIS_URL }}
           URL: "notes.6ix.com"
           PORT: "3000"
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           PGSSLMODE: "disable"
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: outline
@@ -68,6 +70,8 @@ jobs:
           --build-arg REDIS_URL=$REDIS_URL \
           --build-arg URL=$URL \
           --build-arg PORT=$PORT \
+          --build-arg GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID \
+          --build-arg GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET \
           --build-arg PGSSLMODE=$PGSSLMODE \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -87,6 +91,8 @@ jobs:
           AWS_S3_UPLOAD_BUCKET_URL: ${{ secrets.AWS_S3_UPLOAD_BUCKET_URL }}
           AWS_S3_UPLOAD_BUCKET_NAME: ${{ secrets.AWS_S3_UPLOAD_BUCKET_NAME }}
           REDIS_URL: ${{ secrets.REDIS_URL }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           IMAGE_TAG: ${{ github.run_id }} 
           
         run: |
@@ -100,5 +106,7 @@ jobs:
            --set env_secret.AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --set env_secret.AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
            --set env_secret.AWS_S3_UPLOAD_BUCKET_NAME=$AWS_S3_UPLOAD_BUCKET_NAME --set env_secret.AWS_S3_UPLOAD_BUCKET_URL=$AWS_S3_UPLOAD_BUCKET_URL --set env_secret.AWS_S3_ACCELERATE_URL=$AWS_S3_ACCELERATE_URL \
            --set env_secret.REDIS_URL=$REDIS_URL \
+           --set env_secret.GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID \
+           --set env_secret.GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET \
            --namespace=outline -f ./_infra/k8s/outline/config/prod.yaml outline ./_infra/k8s/outline --wait --history-max 4 --timeout 1000s --debug 
 

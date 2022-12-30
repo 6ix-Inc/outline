@@ -72,6 +72,12 @@ spec:
               value:  {{ .Values.env_secret.GOOGLE_CLIENT_ID }} 
             - name: GOOGLE_CLIENT_SECRET
               value:  {{ .Values.env_secret.GOOGLE_CLIENT_SECRET }}
+            - name: AZURE_CLIENT_ID
+              value:  {{ .Values.env_secret.AZURE_CLIENT_ID }} 
+            - name: AZURE_CLIENT_SECRET
+              value:  {{ .Values.env_secret.AZURE_CLIENT_SECRET }}
+            - name: AZURE_RESOURCE_APP_ID
+              value:  {{ .Values.env_secret.AZURE_RESOURCE_APP_ID }}
             - name: PORT
               value:  "3000"
             - name: PGSSLMODE

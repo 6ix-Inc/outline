@@ -69,7 +69,7 @@ spec:
             - name: URL
               value:  "notes.6ix.com"
             - name: GOOGLE_CLIENT_ID
-              value:  {{ .Values.env_secret.GOOGLE_CLIENT_ID }}
+              value:  {{ .Values.env_secret.GOOGLE_CLIENT_ID }} 
             - name: GOOGLE_CLIENT_SECRET
               value:  {{ .Values.env_secret.GOOGLE_CLIENT_SECRET }}
             - name: PORT

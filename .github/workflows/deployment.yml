@@ -94,7 +94,6 @@ jobs:
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           IMAGE_TAG: ${{ github.run_id }} 
-          NODE_ENV
         run: |
           aws eks --region us-east-1 update-kubeconfig --name production-posthog-eks-cluster
           export KUBECONFIG=~/.kube/config

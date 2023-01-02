@@ -78,6 +78,10 @@ spec:
               value:  {{ .Values.env_secret.AZURE_CLIENT_SECRET }}
             - name: AZURE_RESOURCE_APP_ID
               value:  {{ .Values.env_secret.AZURE_RESOURCE_APP_ID }}
+            - name: SLACK_CLIENT_ID
+              value:  {{ .Values.env_secret.SLACK_CLIENT_ID }}
+            - name: SLACK_CLIENT_SECRET
+              value:  {{ .Values.env_secret.SLACK_CLIENT_SECRET }}
             - name: PORT
               value:  "3000"
             - name: PGSSLMODE

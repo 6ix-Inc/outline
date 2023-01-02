@@ -77,6 +77,8 @@ jobs:
           --build-arg GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET \
           --build-arg AZURE_CLIENT_ID=$AZURE_CLIENT_ID \
           --build-arg AZURE_CLIENT_SECRET=$AZURE_CLIENT_SECRET \
+          --build-arg SLACK_CLIENT_ID=$SLACK_CLIENT_ID \
+          --build-arg SLACK_CLIENT_SECRET=$SLACK_CLIENT_SECRET \
           --build-arg AZURE_RESOURCE_APP_ID=$AZURE_RESOURCE_APP_ID \
           --build-arg PGSSLMODE=$PGSSLMODE \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -102,6 +104,8 @@ jobs:
           AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
           AZURE_RESOURCE_APP_ID: ${{ secrets.AZURE_RESOURCE_APP_ID }}
+          SLACK_CLIENT_ID: ${{ secrets.SLACK_CLIENT_ID }}
+          SLACK_CLIENT_SECRET: ${{ secrets.SLACK_CLIENT_SECRET }}
           IMAGE_TAG: ${{ github.run_id }} 
         run: |
           aws eks --region us-east-1 update-kubeconfig --name production-posthog-eks-cluster

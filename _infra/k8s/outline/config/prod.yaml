@@ -93,7 +93,7 @@ configmap:
     URL: ""
     PORT: ""
 
-
+ 
 autoscaling:
   enabled: true
   minReplicas: 1

@@ -79,7 +79,7 @@ spec:
             - name: AZURE_RESOURCE_APP_ID
               value:  {{ .Values.env_secret.AZURE_RESOURCE_APP_ID }}
             - name: SLACK_KEY
-              value:  {{ .Values.env_secret.SLACK_KEY }}
+              value:  "490016510849.4588259631281"
             - name: SLACK_SECRET
               value:  {{ .Values.env_secret.SLACK_SECRET }}
             - name: PORT

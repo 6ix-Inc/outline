@@ -80,6 +80,8 @@ jobs:
           --build-arg AZURE_CLIENT_SECRET=$AZURE_CLIENT_SECRET \
           --build-arg SLACK_CLIENT_ID=$SLACK_CLIENT_ID \
           --build-arg SLACK_CLIENT_SECRET=$SLACK_CLIENT_SECRET \
+          --build-arg SLACK_VERIFICATION_TOKEN=$SLACK_VERIFICATION_TOKEN \
+          --build-arg SLACK_APP_ID=$SLACK_APP_ID \
           --build-arg SLACK_MESSAGE_ACTIONS=$SLACK_MESSAGE_ACTIONS \
           --build-arg AZURE_RESOURCE_APP_ID=$AZURE_RESOURCE_APP_ID \
           --build-arg PGSSLMODE=$PGSSLMODE \

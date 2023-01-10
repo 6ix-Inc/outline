@@ -48,6 +48,7 @@ jobs:
           REDIS_URL: ${{ secrets.REDIS_URL }}
           URL: "notes.6ix.com"
           PORT: "3000"
+          SLACK_KEY: "490016510849.4588259631281"
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -58,7 +59,7 @@ jobs:
           ECR_REPOSITORY: outline
           IMAGE_TAG: ${{ github.run_id }}
         run: |
-          echo $DATABASE_URL && docker build -f Dockerfile --no-cache \
+          echo $DATABASE_URL  &&docker build -f Dockerfile --no-cache \
           --build-arg DATABASE_URL=$DATABASE_URL \
           --build-arg SECRET_KEY=$SECRET_KEY \
           --build-arg NODE_ENV=$NODE_ENV \
@@ -104,7 +105,6 @@ jobs:
           AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
           AZURE_RESOURCE_APP_ID: ${{ secrets.AZURE_RESOURCE_APP_ID }}
-          SLACK_KEY: ${{ secrets.SLACK_KEY }}
           SLACK_SECRET: ${{ secrets.SLACK_SECRET }}
           IMAGE_TAG: ${{ github.run_id }} 
         run: |
@@ -123,7 +123,6 @@ jobs:
            --set env_secret.AZURE_CLIENT_ID=$AZURE_CLIENT_ID \
            --set env_secret.AZURE_CLIENT_SECRET=$AZURE_CLIENT_SECRET \
            --set env_secret.AZURE_RESOURCE_APP_ID=$AZURE_RESOURCE_APP_ID \
-           --set env_secret.SLACK_KEY=$SLACK_KEY \
            --set env_secret.SLACK_SECRET=$SLACK_SECRET \
            --namespace=outline -f ./_infra/k8s/outline/config/prod.yaml outline ./_infra/k8s/outline --wait --history-max 4 --timeout 1000s --debug 
 

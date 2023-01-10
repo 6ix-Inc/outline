@@ -82,12 +82,12 @@ spec:
               value:  {{ .Values.env_secret.SLACK_CLIENT_ID }}
             - name: SLACK_CLIENT_SECRET
               value:  {{ .Values.env_secret.SLACK_CLIENT_SECRET }}
-            - name: SLACK_VERIFICATION_TOKEN
-              value:  {{ .Values.env_secret.SLACK_VERIFICATION_TOKEN }}
-            - name: SLACK_APP_ID
-              value:  {{ .Values.env_secret.SLACK_APP_ID }}
-            - name: SLACK_MESSAGE_ACTIONS
-              value:  "true"
+            # - name: SLACK_VERIFICATION_TOKEN
+            #   value:  {{ .Values.env_secret.SLACK_VERIFICATION_TOKEN }}
+            # - name: SLACK_APP_ID
+            #   value:  {{ .Values.env_secret.SLACK_APP_ID }}
+            # - name: SLACK_MESSAGE_ACTIONS
+            #   value: "true"
             - name: PORT
               value:  "3000"
             - name: PGSSLMODE

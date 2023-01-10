@@ -95,7 +95,7 @@ configmap:
     SLACK_MESSAGE_ACTIONS: ""
     URL: ""
     PORT: ""
-
+ 
  
 autoscaling:
   enabled: true

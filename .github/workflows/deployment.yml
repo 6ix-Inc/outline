@@ -68,8 +68,6 @@ jobs:
           --build-arg REDIS_URL=$REDIS_URL \
           --build-arg URL=$URL \
           --build-arg PORT=$PORT \
-          --build-arg SAML_SSO_ENDPOINT=$SAML_SSO_ENDPOINT \
-          --build-arg SAML_CERT=$SAML_CERT \
           --build-arg PGSSLMODE=$PGSSLMODE \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG

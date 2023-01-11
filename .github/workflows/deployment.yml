@@ -48,12 +48,6 @@ jobs:
           REDIS_URL: ${{ secrets.REDIS_URL }}
           URL: "notes.6ix.com"
           PORT: "3000"
-          SLACK_KEY: ${{ secrets.SLACK_KEY }}
-          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-          AZURE_RESOURCE_APP_ID: ${{ secrets.AZURE_RESOURCE_APP_ID }}
           PGSSLMODE: "disable"
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: outline
@@ -74,15 +68,8 @@ jobs:
           --build-arg REDIS_URL=$REDIS_URL \
           --build-arg URL=$URL \
           --build-arg PORT=$PORT \
-          --build-arg GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID \
-          --build-arg GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET \
-          --build-arg AZURE_CLIENT_ID=$AZURE_CLIENT_ID \
-          --build-arg AZURE_CLIENT_SECRET=$AZURE_CLIENT_SECRET \
-          --build-arg SLACK_KEY=$SLACK_KEY \
-          --build-arg SLACK_SECRET=$SLACK_SECRET \
-          --build-arg SLACK_VERIFICATION_TOKEN=$SLACK_VERIFICATION_TOKEN \
-          --build-arg SLACK_APP_ID=$SLACK_APP_ID \
-          --build-arg AZURE_RESOURCE_APP_ID=$AZURE_RESOURCE_APP_ID \
+          --build-arg SAML_SSO_ENDPOINT=$SAML_SSO_ENDPOINT \
+          --build-arg SAML_CERT=$SAML_CERT \
           --build-arg PGSSLMODE=$PGSSLMODE \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -102,15 +89,8 @@ jobs:
           AWS_S3_UPLOAD_BUCKET_URL: ${{ secrets.AWS_S3_UPLOAD_BUCKET_URL }}
           AWS_S3_UPLOAD_BUCKET_NAME: ${{ secrets.AWS_S3_UPLOAD_BUCKET_NAME }}
           REDIS_URL: ${{ secrets.REDIS_URL }}
-          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-          AZURE_RESOURCE_APP_ID: ${{ secrets.AZURE_RESOURCE_APP_ID }}
-          SLACK_KEY: ${{ secrets.SLACK_KEY }}
-          SLACK_SECRET: ${{ secrets.SLACK_SECRET }}
-          SLACK_VERIFICATION_TOKEN: ${{ secrets.SLACK_VERIFICATION_TOKEN }}
-          SLACK_APP_ID: ${{ secrets.SLACK_APP_ID }}
+          SAML_SSO_ENDPOINT: ${{ secrets.SAML_SSO_ENDPOINT }}
+          SAML_CERT: ${{ secrets.SAML_CERT }}
           IMAGE_TAG: ${{ github.run_id }} 
         run: |
           aws eks --region us-east-1 update-kubeconfig --name production-posthog-eks-cluster
@@ -123,14 +103,7 @@ jobs:
            --set env_secret.AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --set env_secret.AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
            --set env_secret.AWS_S3_UPLOAD_BUCKET_NAME=$AWS_S3_UPLOAD_BUCKET_NAME --set env_secret.AWS_S3_UPLOAD_BUCKET_URL=$AWS_S3_UPLOAD_BUCKET_URL --set env_secret.AWS_S3_ACCELERATE_URL=$AWS_S3_ACCELERATE_URL \
            --set env_secret.REDIS_URL=$REDIS_URL \
-           --set env_secret.GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID \
-           --set env_secret.GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET \
-           --set env_secret.AZURE_CLIENT_ID=$AZURE_CLIENT_ID \
-           --set env_secret.AZURE_CLIENT_SECRET=$AZURE_CLIENT_SECRET \
-           --set env_secret.AZURE_RESOURCE_APP_ID=$AZURE_RESOURCE_APP_ID \
-           --set env_secret.SLACK_KEY=$SLACK_KEY \
-           --set env_secret.SLACK_SECRET=$SLACK_SECRET \
-           --set env_secret.SLACK_VERIFICATION_TOKEN=$SLACK_VERIFICATION_TOKEN \
-           --set env_secret.SLACK_APP_ID=$SLACK_APP_ID \
+           --set env_secret.SAML_SSO_ENDPOINT=$SAML_SSO_ENDPOINT \
+           --set env_secret.SAML_CERT=$SAML_CERT \
            --namespace=outline -f ./_infra/k8s/outline/config/prod.yaml outline ./_infra/k8s/outline --wait --history-max 4 --timeout 1000s --debug 
 

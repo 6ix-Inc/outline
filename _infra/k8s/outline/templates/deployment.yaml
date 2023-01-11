@@ -66,32 +66,17 @@ spec:
               value:  "private"
             - name: REDIS_URL
               value:  {{ .Values.env_secret.REDIS_URL }}
+            - name: SAML_SSO_ENDPOINT
+              value:  {{ .Values.env_secret.SAML_SSO_ENDPOINT }}
+            - name: SAML_CERT
+              value:  {{ .Values.env_secret.SAML_CERT }}
             - name: URL
               value:  "notes.6ix.com"
-            - name: GOOGLE_CLIENT_ID
-              value:  {{ .Values.env_secret.GOOGLE_CLIENT_ID }} 
-            - name: GOOGLE_CLIENT_SECRET
-              value:  {{ .Values.env_secret.GOOGLE_CLIENT_SECRET }}
-            - name: AZURE_CLIENT_ID
-              value:  {{ .Values.env_secret.AZURE_CLIENT_ID }} 
-            - name: AZURE_CLIENT_SECRET
-              value:  {{ .Values.env_secret.AZURE_CLIENT_SECRET }}
-            - name: AZURE_RESOURCE_APP_ID
-              value:  {{ .Values.env_secret.AZURE_RESOURCE_APP_ID }}
-            - name: SLACK_KEY
-              value:  {{ .Values.env_secret.SLACK_KEY }}
-            - name: SLACK_SECRET
-              value:  {{ .Values.env_secret.SLACK_SECRET }}
-            - name: SLACK_VERIFICATION_TOKEN
-              value:  {{ .Values.env_secret.SLACK_VERIFICATION_TOKEN }}
-            - name: SLACK_APP_ID
-              value:  {{ .Values.env_secret.SLACK_APP_ID }}
-            - name: SLACK_MESSAGE_ACTIONS
-              value:  "true"
             - name: PORT
               value:  "3000"
             - name: PGSSLMODE
               value:  "disable"
+
           # livenessProbe:
           #   httpGet:
           #     path: /

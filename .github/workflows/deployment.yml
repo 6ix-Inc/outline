@@ -93,7 +93,7 @@ jobs:
           REDIS_URL: ${{ secrets.REDIS_URL }}
           SAML_SSO_ENDPOINT: ${{ secrets.SAML_SSO_ENDPOINT }}
           SLACK_CLIENT_ID: ${{ secrets.SLACK_CLIENT_ID }}
-          SLACK_CLIENT_SECRE: ${{ secrets.SLACK_CLIENT_SECRE }}
+          SLACK_CLIENT_SECRET: ${{ secrets.SLACK_CLIENT_SECRET }}
           SAML_CERT: ${{ secrets.SAML_CERT }}
           IMAGE_TAG: ${{ github.run_id }} 
         run: |

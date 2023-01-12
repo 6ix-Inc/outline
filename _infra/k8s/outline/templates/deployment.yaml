@@ -70,10 +70,6 @@ spec:
               value:  {{ .Values.env_secret.SAML_SSO_ENDPOINT }}
             - name: SAML_CERT
               value:  {{ .Values.env_secret.SAML_CERT }}
-            - name: SLACK_CLIENT_ID
-              value:  "ssss123"
-            - name: SLACK_CLIENT_SECRET
-              value:  "sssss1234323"
             - name: URL
               value:  "notes.6ix.com"
             - name: PORT

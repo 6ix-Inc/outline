@@ -87,8 +87,6 @@ configmap:
     PORT: ""
     SAML_SSO_ENDPOINT: ""
     SAML_CERT: ""
-    SLACK_CLIENT_ID: ""
-    SLACK_CLIENT_SECRET: ""
  
 autoscaling:
   enabled: true

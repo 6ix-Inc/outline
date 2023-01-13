@@ -11,8 +11,15 @@ type Props = {
 };
 
 function AuthLogo({ providerName, color, size = 16 }: Props) {
+  console.log(providerName)
   switch (providerName) {
     case "slack":
+      return (
+        <Logo>
+          <SlackLogo size={size} fill={color} />
+        </Logo>
+      );
+    case "saml":
       return (
         <Logo>
           <SlackLogo size={size} fill={color} />

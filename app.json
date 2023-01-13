@@ -203,6 +203,14 @@
       "value": "en_US",
       "description": "The default interface language. See translate.getoutline.com for a list of available language codes and their rough percentage translated.",
       "required": false
+    },
+    "SAML_SSO_ENDPOINT": {
+      "description": "provide SSO endpoint starting from https://<mydomain>.auth0.com/samlp/XXXXXXXXXXXX",
+      "required": false
+    },
+    "SAML_CERT": {
+      "description": "Value of cert which is in between -----BEGIN CERTIFICATE----- and -----END CERTIFICATE----- in a single line without space",
+      "required": false
     }
   }
 }

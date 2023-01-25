@@ -87,6 +87,15 @@ configmap:
     PORT: ""
     SAML_SSO_ENDPOINT: ""
     SAML_CERT: ""
+
+    OIDC_CLIENT_ID: ""
+    OIDC_CLIENT_SECRET: ""
+    OIDC_AUTH_URI: ""
+    OIDC_TOKEN_URI: ""
+    OIDC_USERINFO_URI: ""
+    OIDC_USERNAME_CLAIM: ""
+    OIDC_DISPLAY_NAME: ""
+    OIDC_SCOPES: ""
  
 autoscaling:
   enabled: true

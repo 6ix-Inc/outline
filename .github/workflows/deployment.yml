@@ -52,7 +52,7 @@ jobs:
           PORT: "3000"
           OIDC_USERNAME_CLAIM: "email"
           OIDC_DISPLAY_NAME: "Auth0"
-          OIDC_SCOPES: "openid profile email"
+          OIDC_SCOPES: "openid"
           PGSSLMODE: "disable"
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: outline

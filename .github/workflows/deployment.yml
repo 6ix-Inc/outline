@@ -52,13 +52,13 @@ jobs:
           PORT: "3000"
           OIDC_USERNAME_CLAIM: "email"
           OIDC_DISPLAY_NAME: "Auth0"
-          OIDC_SCOPES: "openid profile email"
+          OIDC_SCOPES: "openid"
           PGSSLMODE: "disable"
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: outline
           IMAGE_TAG: ${{ github.run_id }}
         run: |
-          docker build -f Dockerfile --no-cache \
+          echo $DATABASE_URL  && docker build -f Dockerfile --no-cache \
           --build-arg DATABASE_URL=$DATABASE_URL \
           --build-arg SECRET_KEY=$SECRET_KEY \
           --build-arg NODE_ENV=$NODE_ENV \

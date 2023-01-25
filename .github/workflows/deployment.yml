@@ -50,6 +50,9 @@ jobs:
           SAML_CERT: ${{ secrets.SAML_CERT }}
           URL: "notes.6ix.com"
           PORT: "3000"
+          OIDC_USERNAME_CLAIM: "email"
+          OIDC_DISPLAY_NAME: "Auth0"
+          OIDC_SCOPES: "openid profile email"
           PGSSLMODE: "disable"
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: outline
@@ -72,6 +75,9 @@ jobs:
           --build-arg SAML_CERT=$SAML_CERT \
           --build-arg URL=$URL \
           --build-arg PORT=$PORT \
+          --build-arg OIDC_USERNAME_CLAIM=$OIDC_USERNAME_CLAIM \
+          --build-arg OIDC_DISPLAY_NAME=$OIDC_DISPLAY_NAME \
+          --build-arg OIDC_SCOPES=$OIDC_SCOPES \
           --build-arg PGSSLMODE=$PGSSLMODE \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -93,6 +99,11 @@ jobs:
           REDIS_URL: ${{ secrets.REDIS_URL }}
           SAML_SSO_ENDPOINT: ${{ secrets.SAML_SSO_ENDPOINT }}
           SAML_CERT: ${{ secrets.SAML_CERT }}
+          OIDC_CLIENT_ID: ${{ secrets.OIDC_CLIENT_ID }}
+          OIDC_CLIENT_SECRET: ${{ secrets.OIDC_CLIENT_SECRET }}
+          OIDC_AUTH_URI: ${{ secrets.OIDC_AUTH_URI }}
+          OIDC_TOKEN_URI: ${{ secrets.OIDC_TOKEN_URI }}
+          OIDC_USERINFO_URI: ${{ secrets.OIDC_USERINFO_URI }}
           IMAGE_TAG: ${{ github.run_id }} 
         run: |
           aws eks --region us-east-1 update-kubeconfig --name production-posthog-eks-cluster
@@ -107,5 +118,10 @@ jobs:
            --set env_secret.REDIS_URL=$REDIS_URL \
            --set env_secret.SAML_SSO_ENDPOINT=$SAML_SSO_ENDPOINT \
            --set env_secret.SAML_CERT=$SAML_CERT \
+           --set env_secret.OIDC_CLIENT_ID=$OIDC_CLIENT_ID \
+           --set env_secret.OIDC_CLIENT_SECRET=$OIDC_CLIENT_SECRET \
+           --set env_secret.OIDC_AUTH_URI=$OIDC_AUTH_URI \
+           --set env_secret.OIDC_TOKEN_URI=$OIDC_TOKEN_URI \
+           --set env_secret.OIDC_USERINFO_URI=$OIDC_USERINFO_URI \
            --namespace=outline -f ./_infra/k8s/outline/config/prod.yaml outline ./_infra/k8s/outline --wait --history-max 4 --timeout 1000s --debug 
 

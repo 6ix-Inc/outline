@@ -70,6 +70,22 @@ spec:
               value:  {{ .Values.env_secret.SAML_SSO_ENDPOINT }}
             - name: SAML_CERT
               value:  {{ .Values.env_secret.SAML_CERT }}
+            - name: OIDC_CLIENT_ID
+              value:  ""
+            - name: OIDC_CLIENT_SECRET
+              value:  ""
+            - name: OIDC_AUTH_URI
+              value:  ""
+            - name: OIDC_TOKEN_URI
+              value:  ""
+            - name: OIDC_USERINFO_URI
+              value:  ""
+            - name: OIDC_USERNAME_CLAIM
+              value:  "email"
+            - name: OIDC_DISPLAY_NAME
+              value:  "Auth0"
+            - name: OIDC_SCOPES
+              value:  "openid profile email"
             - name: URL
               value:  "notes.6ix.com"
             - name: PORT

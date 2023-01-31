@@ -87,7 +87,6 @@ jobs:
         id: helm-deployment
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
           UTILS_SECRET: ${{ secrets.UTILS_SECRET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -110,7 +109,6 @@ jobs:
           helm upgrade --install --atomic \
            --set image.tag=$IMAGE_TAG \
            --set env_secret.DATABASE_URL=$DATABASE_URL \
-           --set env_secret.SECRET_KEY=$SECRET_KEY \
            --set env_secret.AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --set env_secret.AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
            --set env_secret.AWS_S3_UPLOAD_BUCKET_NAME=$AWS_S3_UPLOAD_BUCKET_NAME --set env_secret.AWS_S3_UPLOAD_BUCKET_URL=$AWS_S3_UPLOAD_BUCKET_URL --set env_secret.AWS_S3_ACCELERATE_URL=$AWS_S3_ACCELERATE_URL \
            --set env_secret.REDIS_URL=$REDIS_URL \
@@ -121,6 +119,6 @@ jobs:
            --set env_secret.OIDC_AUTH_URI=$OIDC_AUTH_URI \
            --set env_secret.OIDC_TOKEN_URI=$OIDC_TOKEN_URI \
            --set env_secret.OIDC_USERINFO_URI=$OIDC_USERINFO_URI \
-           --set env_secret.OIDC_SCOPES="openid profile email" \
+           --set env_secret.OIDC_SCOPES=$OIDC_SCOPES \
            --namespace=outline -f ./_infra/k8s/outline/config/prod.yaml outline ./_infra/k8s/outline --wait --history-max 4 --timeout 1000s --debug 
 

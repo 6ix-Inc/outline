@@ -52,7 +52,6 @@ jobs:
           PORT: "3000"
           OIDC_USERNAME_CLAIM: "email"
           OIDC_DISPLAY_NAME: "Auth0"
-          OIDC_SCOPES: "openid"
           PGSSLMODE: "disable"
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: outline
@@ -77,7 +76,6 @@ jobs:
           --build-arg PORT=$PORT \
           --build-arg OIDC_USERNAME_CLAIM=$OIDC_USERNAME_CLAIM \
           --build-arg OIDC_DISPLAY_NAME=$OIDC_DISPLAY_NAME \
-          --build-arg OIDC_SCOPES=$OIDC_SCOPES \
           --build-arg PGSSLMODE=$PGSSLMODE \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG

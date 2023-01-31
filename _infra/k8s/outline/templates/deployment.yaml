@@ -85,7 +85,7 @@ spec:
             - name: OIDC_DISPLAY_NAME
               value:  "Auth0"
             - name: OIDC_SCOPES
-              value:  "openid"
+              value:  {{ .Values.env_secret.OIDC_SCOPES }}
             - name: URL
               value:  "notes.6ix.com"
             - name: PORT

@@ -95,10 +95,7 @@ configmap:
     OIDC_USERINFO_URI: ""
     OIDC_USERNAME_CLAIM: ""
     OIDC_DISPLAY_NAME: ""
-    OIDC_SCOPES: 
-      - "openid"
-      - "profile"
-      - "email"
+    OIDC_SCOPES: ""
  
 autoscaling:
   enabled: true

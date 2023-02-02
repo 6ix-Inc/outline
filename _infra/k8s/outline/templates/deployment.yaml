@@ -87,7 +87,7 @@ spec:
             - name: OIDC_SCOPES
               value:  {{ .Values.env_secret.OIDC_SCOPES }}
             - name: URL
-              value:  "https://notes.6ix.com"
+              value:  "http://notes.6ix.com"
             - name: PORT
               value:  "3000"
             - name: PGSSLMODE

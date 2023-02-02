@@ -107,7 +107,10 @@ spec:
           #   periodSeconds: 30
           #   successThreshold: 1
           #   timeoutSeconds: 3
-              
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "export OIDC_SCOPE='openid profile email'"]              
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

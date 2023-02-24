@@ -935,7 +935,7 @@ mark {
   }
 
   select {
-    background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M9.03087 9C8.20119 9 7.73238 9.95209 8.23824 10.6097L11.2074 14.4696C11.6077 14.99 12.3923 14.99 12.7926 14.4696L15.7618 10.6097C16.2676 9.95209 15.7988 9 14.9691 9L9.03087 9Z" fill="currentColor"/> </svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M9.03087 9C8.20119 9 7.73238 9.95209 8.23824 10.6097L11.2074 14.4696C11.6077 14.99 12.3923 14.99 12.7926 14.4696L15.7618 10.6097C16.2676 9.95209 15.7988 9 14.9691 9L9.03087 9Z" fill="#fff"/> </svg>');
     background-repeat: no-repeat;
     background-position: center right;
     padding-right: 20px;

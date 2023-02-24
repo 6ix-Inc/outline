@@ -21,7 +21,7 @@ const RealButton = styled(ActionButton)<RealProps>`
   width: ${(props) => (props.$fullwidth ? "100%" : "auto")};
   margin: 0;
   padding: 0;
-  border: 0;
+  border: 1px solid  ${(props) => props.theme.yellow};
   background: ${(props) => props.theme.buttonBackground};
   color: ${(props) => props.theme.buttonText};
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px;
@@ -40,7 +40,7 @@ const RealButton = styled(ActionButton)<RealProps>`
     !props.$borderOnHover &&
     `
       svg {
-        fill: ${props.$iconColor || "currentColor"};
+        fill: ${props.$iconColor || "#fff"};
       }
     `}
 
@@ -80,7 +80,7 @@ const RealButton = styled(ActionButton)<RealProps>`
       props.$borderOnHover
         ? ""
         : `svg {
-      fill: ${props.$iconColor || "currentColor"};
+      fill: ${props.$iconColor || "#fff"};
     }`
     }
 
@@ -102,7 +102,7 @@ const RealButton = styled(ActionButton)<RealProps>`
       background: none;
 
       svg {
-        fill: currentColor;
+        fill: #fff;
       }
     }
   `}
@@ -207,7 +207,7 @@ const Button = <T extends React.ElementType = "button">(
       <Inner hasIcon={hasIcon} hasText={hasText} disclosure={disclosure}>
         {hasIcon && ic}
         {hasText && <Label hasIcon={hasIcon}>{children || value}</Label>}
-        {disclosure && <ExpandedIcon color="currentColor" />}
+        {disclosure && <ExpandedIcon color="#fff" />}
       </Inner>
     </RealButton>
   );

@@ -11,7 +11,7 @@ function present(collection: Collection) {
     sort: collection.sort,
     icon: collection.icon,
     index: collection.index,
-    color: collection.color || "#4E5C6E",
+    color: collection.color || "#373737",
     permission: collection.permission,
     sharing: collection.sharing,
     createdAt: collection.createdAt,

@@ -11,8 +11,8 @@ export default async function main(exit = false) {
   if (teamCount === 0) {
     const user = await sequelize.transaction(async (transaction) => {
       const team = await teamCreator({
-        name: "Wiki",
-        subdomain: "wiki",
+        name: "6ix",
+        subdomain: "6ix",
         authenticationProviders: [],
         transaction,
         ip: "127.0.0.1",

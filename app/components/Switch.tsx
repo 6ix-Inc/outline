@@ -93,7 +93,7 @@ const Slider = styled.span<{ width: number; height: number }>`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${(props) => props.theme.slate};
+  background-color: ${(props) => props.theme.lightBlack};
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: ${(props) => props.height}px;
@@ -105,7 +105,7 @@ const Slider = styled.span<{ width: number; height: number }>`
     width: ${(props) => props.height - 8}px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: ${(props) => props.theme.yellow};
     border-radius: 50%;
     -webkit-transition: 0.4s;
     transition: 0.4s;
@@ -124,11 +124,11 @@ const HiddenInput = styled.input<{ width: number; height: number }>`
   }
 
   &:checked + ${Slider} {
-    background-color: ${(props) => props.theme.primary};
+    background-color: ${(props) => props.theme.warmGrey};
   }
 
   &:focus + ${Slider} {
-    box-shadow: 0 0 1px ${(props) => props.theme.primary};
+    box-shadow: 0 0 1px ${(props) => props.theme.warmGrey};
   }
 
   &:checked + ${Slider}:before {

@@ -24,7 +24,7 @@ const CollectionEdit = ({ collectionId, onSubmit }: Props) => {
   invariant(collection, "Collection not found");
   const [name, setName] = useState(collection.name);
   const [icon, setIcon] = useState(collection.icon);
-  const [color, setColor] = useState(collection.color || "#4E5C6E");
+  const [color, setColor] = useState(collection.color || "#373737");
   const [sort, setSort] = useState<{
     field: string;
     direction: "asc" | "desc";

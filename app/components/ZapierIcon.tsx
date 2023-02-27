@@ -4,7 +4,7 @@ type Props = {
   color?: string;
 };
 
-export default function ZapierIcon({ color = "#4E5C6E" }: Props) {
+export default function ZapierIcon({ color = "#373737" }: Props) {
   return (
     <svg
       fill={color}

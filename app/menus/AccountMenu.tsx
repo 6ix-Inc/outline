@@ -15,7 +15,7 @@ import {
   logout,
   downloadApp,
 } from "~/actions/definitions/navigation";
-import { changeTheme } from "~/actions/definitions/settings";
+// import { changeTheme } from "~/actions/definitions/settings";
 import usePrevious from "~/hooks/usePrevious";
 import useStores from "~/hooks/useStores";
 import separator from "~/menus/separator";
@@ -45,7 +45,7 @@ const AccountMenu: React.FC = ({ children }) => {
       openChangelog,
       openFeedbackUrl,
       openBugReportUrl,
-      changeTheme,
+      // changeTheme,
       navigateToProfileSettings,
       navigateToAccountPreferences,
       separator(),

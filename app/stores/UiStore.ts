@@ -77,7 +77,7 @@ class UiStore {
       );
 
       const setSystemTheme = (event: MediaQueryListEvent | MediaQueryList) => {
-        this.systemTheme = event.matches ? SystemTheme.Dark : SystemTheme.Light;
+        this.systemTheme = event.matches ? SystemTheme.Dark : SystemTheme.Dark;
       };
 
       setSystemTheme(colorSchemeQueryList);

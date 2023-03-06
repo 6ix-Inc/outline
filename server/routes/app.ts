@@ -57,9 +57,9 @@ export const renderApp = async (
   options: { title?: string; description?: string; canonical?: string } = {}
 ) => {
   const {
-    title = "Outline",
-    description = "A modern team knowledge base for your internal documentation, product specs, support answers, meeting notes, onboarding, &amp; more…",
-    canonical = "",
+    title = "Unlocking Social Mobility - 6ix",
+    description = "Unlocking social mobility on a global scale by empowering anyone, from anywhere, to invest in anything.",
+    canonical = "https://6ix.com/",
   } = options;
 
   if (ctx.request.path === "/realtime/") {

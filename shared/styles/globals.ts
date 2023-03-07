@@ -32,6 +32,11 @@ export default createGlobalStyle<Props>`
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
+  button svg,
+  svg {
+    fill: white !important;
+  }
+
   body {
     font-size: 16px;
     line-height: 1.5;

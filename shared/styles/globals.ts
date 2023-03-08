@@ -37,6 +37,10 @@ export default createGlobalStyle<Props>`
     fill: white !important;
   }
 
+  button[class*="ToolbarButton"] svg {
+    fill: #1f1f1f !important;
+  }
+
   body {
     font-size: 16px;
     line-height: 1.5;

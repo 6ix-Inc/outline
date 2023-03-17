@@ -61,7 +61,7 @@ spec:
             - name: AWS_S3_UPLOAD_MAX_SIZE
               value:  "26214400"
             - name: AWS_S3_FORCE_PATH_STYLE
-              value: "true"
+              value: "false"
             - name: AWS_S3_ACL
               value:  "private"
             - name: REDIS_URL
